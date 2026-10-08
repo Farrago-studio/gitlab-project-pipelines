@@ -1,0 +1,22 @@
+{
+  "extension.displayName": "Farrago GitLab Pipelines",
+  "extension.description": "Monitor every GitLab pipeline in the current project, filter branches and tags, inspect job logs, and run manual jobs from VS Code.",
+  "capabilities.untrustedWorkspaces": "The extension reads the local Git remote and connects to its GitLab instance. Trust the workspace before using it.",
+  "command.refresh": "GitLab Pipelines: Refresh",
+  "command.setToken": "GitLab Pipelines: Configure access token",
+  "command.clearToken": "GitLab Pipelines: Remove access token",
+  "command.selectFilter": "GitLab Pipelines: Filter pipelines",
+  "command.openDashboard": "GitLab Pipelines: Open dashboard",
+  "command.playJob": "Run manual job",
+  "command.openPipeline": "Open pipeline in GitLab",
+  "command.openJob": "Open job in GitLab",
+  "command.showJobLog": "Show job log",
+  "view.containerTitle": "Farrago Pipelines",
+  "view.name": "GitLab Pipelines",
+  "configuration.title": "Farrago GitLab Pipelines",
+  "configuration.remote.description": "Git remote used to detect the GitLab project.",
+  "configuration.baseUrl.description": "GitLab instance URL. Leave empty to infer it from the Git remote.",
+  "configuration.projectPath.description": "GitLab project path (group/subgroup/project). Leave empty to infer it from the Git remote.",
+  "configuration.pipelineLimit.description": "Number of recent pipelines to display across branches and tags.",
+  "configuration.refreshInterval.description": "Automatic refresh interval in seconds. Set to 0 to disable automatic refresh."
+}

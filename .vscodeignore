@@ -1,0 +1,10 @@
+.gitignore
+.github/**
+.vscode/**
+PUBLISHING.md
+scripts/**
+src/**
+tsconfig.json
+node_modules/**
+out/test/**
+**/*.map

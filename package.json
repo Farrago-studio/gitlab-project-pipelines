@@ -1,0 +1,226 @@
+{
+  "name": "gitlab-project-pipelines",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
+  "version": "0.2.1",
+  "publisher": "farrago-studio",
+  "author": {
+    "name": "Farrago",
+    "email": "contact@farrago.fr",
+    "url": "https://farrago.fr/"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://farrago.fr/",
+  "bugs": {
+    "url": "https://github.com/Farrago-studio/gitlab-project-pipelines/issues",
+    "email": "contact@farrago.fr"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Farrago-studio/gitlab-project-pipelines.git"
+  },
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#211970",
+    "theme": "dark"
+  },
+  "pricing": "Free",
+  "preview": true,
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": false,
+      "description": "%capabilities.untrustedWorkspaces%"
+    },
+    "virtualWorkspaces": {
+      "supported": false
+    }
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "gitlab",
+    "gitlab ci",
+    "pipelines",
+    "ci",
+    "cd",
+    "devops",
+    "manual jobs",
+    "tags",
+    "branches",
+    "farrago"
+  ],
+  "activationEvents": [
+    "onView:gitlabProjectPipelines",
+    "onCommand:gitlabProjectPipelines.setToken"
+  ],
+  "main": "./out/extension.js",
+  "l10n": "./l10n",
+  "scripts": {
+    "vscode:prepublish": "npm run check && npm test",
+    "compile": "tsc -p ./",
+    "check": "tsc -p ./ --noEmit && npm run l10n:check",
+    "test": "npm run compile && node --test out/test/remote.test.js",
+    "l10n:export": "vscode-l10n-dev export --outDir ./l10n ./src",
+    "l10n:check": "node scripts/check-localization.mjs",
+    "package": "vsce package --no-dependencies",
+    "publish:marketplace": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.95.0",
+    "@vscode/l10n-dev": "^0.0.35",
+    "@vscode/vsce": "^4.0.0",
+    "typescript": "^6.0.0"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitlabProjectPipelines.refresh",
+        "title": "%command.refresh%",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gitlabProjectPipelines.setToken",
+        "title": "%command.setToken%",
+        "icon": "$(key)"
+      },
+      {
+        "command": "gitlabProjectPipelines.clearToken",
+        "title": "%command.clearToken%"
+      },
+      {
+        "command": "gitlabProjectPipelines.selectFilter",
+        "title": "%command.selectFilter%",
+        "icon": "$(filter)"
+      },
+      {
+        "command": "gitlabProjectPipelines.openDashboard",
+        "title": "%command.openDashboard%",
+        "icon": "$(layout)"
+      },
+      {
+        "command": "gitlabProjectPipelines.playJob",
+        "title": "%command.playJob%",
+        "icon": "$(play)"
+      },
+      {
+        "command": "gitlabProjectPipelines.openPipeline",
+        "title": "%command.openPipeline%",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "gitlabProjectPipelines.openJob",
+        "title": "%command.openJob%",
+        "icon": "$(link-external)"
+      },
+      {
+        "command": "gitlabProjectPipelines.showJobLog",
+        "title": "%command.showJobLog%",
+        "icon": "$(output)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gitlabProjectPipelinesContainer",
+          "title": "%view.containerTitle%",
+          "icon": "media/farrago.svg"
+        }
+      ]
+    },
+    "views": {
+      "gitlabProjectPipelinesContainer": [
+        {
+          "id": "gitlabProjectPipelines",
+          "name": "%view.name%"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "gitlabProjectPipelines.refresh",
+          "when": "view == gitlabProjectPipelines",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gitlabProjectPipelines.setToken",
+          "when": "view == gitlabProjectPipelines",
+          "group": "navigation@4"
+        },
+        {
+          "command": "gitlabProjectPipelines.selectFilter",
+          "when": "view == gitlabProjectPipelines",
+          "group": "navigation@2"
+        },
+        {
+          "command": "gitlabProjectPipelines.openDashboard",
+          "when": "view == gitlabProjectPipelines",
+          "group": "navigation@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gitlabProjectPipelines.playJob",
+          "when": "view == gitlabProjectPipelines && viewItem == job.manual",
+          "group": "inline@1"
+        },
+        {
+          "command": "gitlabProjectPipelines.openPipeline",
+          "when": "view == gitlabProjectPipelines && viewItem == pipeline",
+          "group": "inline@2"
+        },
+        {
+          "command": "gitlabProjectPipelines.showJobLog",
+          "when": "view == gitlabProjectPipelines && (viewItem == job || viewItem == job.manual)",
+          "group": "inline@2"
+        },
+        {
+          "command": "gitlabProjectPipelines.openJob",
+          "when": "view == gitlabProjectPipelines && (viewItem == job || viewItem == job.manual)",
+          "group": "inline@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "%configuration.title%",
+      "properties": {
+        "gitlabProjectPipelines.remote": {
+          "type": "string",
+          "default": "origin",
+          "description": "%configuration.remote.description%"
+        },
+        "gitlabProjectPipelines.baseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "%configuration.baseUrl.description%"
+        },
+        "gitlabProjectPipelines.projectPath": {
+          "type": "string",
+          "default": "",
+          "description": "%configuration.projectPath.description%"
+        },
+        "gitlabProjectPipelines.pipelineLimit": {
+          "type": "number",
+          "default": 30,
+          "minimum": 1,
+          "maximum": 100,
+          "description": "%configuration.pipelineLimit.description%"
+        },
+        "gitlabProjectPipelines.refreshInterval": {
+          "type": "number",
+          "default": 15,
+          "minimum": 0,
+          "description": "%configuration.refreshInterval.description%"
+        }
+      }
+    }
+  }
+}
